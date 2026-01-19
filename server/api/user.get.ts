@@ -1,4 +1,5 @@
 export default defineEventHandler((event) => {
-  // Mengembalikan data user yang sudah divalidasi oleh middleware auth.ts
-  return event.context.user;
+  // Pastikan return value selalu terdefinisi, jangan undefined
+  // Jika user null (belum login), kembalikan null
+  return event.context.user || null;
 });
