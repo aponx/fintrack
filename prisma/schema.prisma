@@ -1,0 +1,115 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Budget {
+  id          String          @id
+  userId      String
+  type        TransactionType
+  frequency   BudgetFrequency
+  categoryId  String
+  code        String
+  name        String
+  amount      Float
+  isActive    Boolean         @default(true)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  category    Category        @relation(fields: [categoryId], references: [id])
+  user        User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Transaction Transaction[]
+}
+
+model Category {
+  id          String          @id
+  code        String          @unique
+  name        String
+  type        TransactionType
+  budget      Budget[]
+  transaction Transaction[]
+}
+
+model Session {
+  id        String   @id
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Transaction {
+  id           String          @id
+  userId       String
+  type         TransactionType
+  amount       Float
+  categoryId   String
+  budgetId     String?
+  walletUserId String
+  createdAt    DateTime        @default(now())
+  budget       Budget?         @relation(fields: [budgetId], references: [id])
+  category     Category        @relation(fields: [categoryId], references: [id])
+  user         User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  walletUser   WalletUser      @relation(fields: [walletUserId], references: [id])
+}
+
+model User {
+  id          String        @id
+  googleId    String        @unique
+  email       String        @unique
+  name        String?
+  avatarUrl   String?
+  isActive    Boolean       @default(true)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  budget      Budget[]
+  session     Session[]
+  transaction Transaction[]
+  walletUser  WalletUser[]
+}
+
+model Wallet {
+  id         String       @id
+  type       WalletType
+  code       String       @unique
+  name       String
+  isDefault  Boolean      @default(false)
+  walletUser WalletUser[]
+}
+
+model WalletUser {
+  id          String        @id
+  userId      String
+  walletId    String
+  code        String
+  name        String
+  amount      Float
+  isActive    Boolean       @default(true)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  transaction Transaction[]
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  wallet      Wallet        @relation(fields: [walletId], references: [id])
+
+  @@unique([userId, walletId])
+}
+
+enum BudgetFrequency {
+  ONCE
+  WEEKLY
+  MONTHLY
+  YEARLY
+}
+
+enum TransactionType {
+  INCOME
+  EXPENSES
+}
+
+enum WalletType {
+  PRETTY_CASH
+  LARGE_CASH
+}
