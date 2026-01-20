@@ -40,64 +40,9 @@ const formatCurrency = (val: number) => {
 </script>
 
 <template>
-  <div class="w-full min-h-screen bg-[#f6f7f9] dark:bg-[#101922] text-[#0d141b] dark:text-white font-manrope">
-    
-    <div class="hidden md:flex h-screen overflow-hidden">
-      
-      <aside class="w-64 bg-white dark:bg-[#151f2e] border-r border-gray-200 dark:border-gray-800 flex flex-col justify-between">
-        <div>
-          <div class="p-8 flex items-center gap-3">
-            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white">
-              <span class="material-symbols-outlined text-xl">account_balance_wallet</span>
-            </div>
-            <h1 class="text-xl font-bold tracking-tight">FinTrack Pro</h1>
-          </div>
-
-          <nav class="px-4 space-y-1">
-            <a v-for="item in menuItems" :key="item.name" href="#" 
-               :class="['flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition-colors', 
-                        item.active ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-gray-500 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-800']">
-              <span class="material-symbols-outlined text-[20px]">{{ item.icon }}</span>
-              {{ item.name }}
-            </a>
-          </nav>
-        </div>
-
-        <div class="p-4">
-          <div class="bg-blue-600 rounded-xl p-4 text-white text-center mb-4">
-             <h3 class="font-bold mb-1">Upgrade Plan</h3>
-             <p class="text-xs text-blue-100 mb-3">Get unlimited access</p>
-             <button class="w-full py-2 bg-white text-blue-600 text-xs font-bold rounded-lg hover:bg-gray-100">Upgrade</button>
-          </div>
-          <button @click="onLogout" class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-red-500 hover:bg-red-50 rounded-lg w-full transition">
-            <span class="material-symbols-outlined">logout</span>
-            Sign Out
-          </button>
-        </div>
-      </aside>
+  <div class="hidden md:flex h-screen overflow-hidden">
 
       <main class="flex-1 overflow-y-auto">
-        
-        <header class="bg-white dark:bg-[#151f2e] border-b border-gray-200 dark:border-gray-800 px-8 py-4 flex items-center justify-between sticky top-0 z-20">
-          <div class="relative w-96">
-            <span class="material-symbols-outlined absolute left-3 top-2.5 text-gray-400">search</span>
-            <input type="text" placeholder="Search analytics or transactions..." class="w-full pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 border-none">
-          </div>
-          
-          <div class="flex items-center gap-6">
-            <button class="relative text-gray-500 hover:text-blue-600">
-              <span class="material-symbols-outlined">notifications</span>
-              <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
-            </button>
-            <div class="flex items-center gap-3 pl-6 border-l border-gray-200 dark:border-gray-700">
-              <div class="text-right hidden lg:block">
-                <p class="text-sm font-bold leading-tight">{{ user.name }}</p>
-                <p class="text-xs text-gray-500">Pro Member</p>
-              </div>
-              <img :src="user.avatarUrl  || ''" class="w-10 h-10 rounded-full border border-gray-200" alt="Avatar">
-            </div>
-          </div>
-        </header>
 
         <div class="p-8 max-w-7xl mx-auto space-y-6">
           
@@ -224,16 +169,8 @@ const formatCurrency = (val: number) => {
       </main>
     </div>
 
-    <div class="md:hidden flex flex-col min-h-screen pb-24"> <div class="px-6 pt-12 pb-6 flex justify-between items-center bg-white dark:bg-[#151f2e]">
-          <div>
-             <p class="text-gray-500 text-sm font-semibold">Good morning,</p>
-             <h1 class="text-2xl font-bold text-blue-600">{{ user.name.split(' ')[0] }}</h1>
-          </div>
-          <button class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center relative">
-             <span class="material-symbols-outlined text-gray-600 dark:text-gray-300">notifications</span>
-             <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
-          </button>
-       </div>
+    <div class="md:hidden flex flex-col min-h-screen pb-24">
+      
 
        <div class="overflow-x-auto px-6 pb-6 scrollbar-hide flex gap-4 snap-x">
           <div class="min-w-[300px] bg-gradient-to-br from-blue-600 to-blue-500 rounded-2xl p-6 text-white shadow-xl shadow-blue-500/30 snap-center relative overflow-hidden">
@@ -321,22 +258,7 @@ const formatCurrency = (val: number) => {
        <button class="fixed bottom-24 right-6 w-14 h-14 bg-blue-600 text-white rounded-full shadow-lg shadow-blue-600/40 flex items-center justify-center active:scale-90 transition z-30">
           <span class="material-symbols-outlined text-2xl">add</span>
        </button>
-
-       <div class="fixed bottom-0 left-0 w-full bg-white dark:bg-[#151f2e] border-t border-gray-100 dark:border-gray-800 pb-safe pt-2 px-6 z-40">
-          <div class="flex justify-between items-center">
-             <button v-for="item in bottomNavItems" :key="item.name" 
-                class="flex flex-col items-center gap-1 p-2 w-16"
-                :class="item.active ? 'text-blue-600' : 'text-gray-400 hover:text-gray-600'">
-                <span class="material-symbols-outlined" :class="item.active ? 'text-[28px]' : 'text-[24px]'">{{ item.icon }}</span>
-                <span class="text-[10px] font-medium">{{ item.name }}</span>
-             </button>
-          </div>
-          <div class="h-6 w-full"></div> 
-       </div>
-
     </div>
-
-  </div>
 </template>
 
 <style scoped>
