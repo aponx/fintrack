@@ -5,7 +5,7 @@ const bottomNavItems = [
   { name: 'Home', icon: 'home', path: '/' },
   { name: 'Wallet', icon: 'account_balance_wallet', path: '/wallets' },
   { name: 'Budget', icon: 'pie_chart', path: '/budgets' },
-  { name: 'Profile', icon: 'person', path: '/profile' },
+  { name: 'Transaction', icon: 'receipt_long', path: '/transactions' },
 ];
 </script>
 

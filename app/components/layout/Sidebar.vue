@@ -10,8 +10,6 @@ const menuItems = [
   { name: 'Wallets', icon: 'account_balance_wallet', path: '/wallets' },
   { name: 'Budgets', icon: 'pie_chart', path: '/budgets' },
   { name: 'Transactions', icon: 'receipt_long', path: '/transactions' },
-  { name: 'Reports', icon: 'bar_chart', path: '/reports' },
-  { name: 'Settings', icon: 'settings', path: '/settings' },
 ];
 </script>
 
@@ -22,7 +20,7 @@ const menuItems = [
         <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white">
           <span class="material-symbols-outlined text-xl">account_balance_wallet</span>
         </div>
-        <h1 class="text-xl font-bold tracking-tight">FinTrack Pro</h1>
+        <h1 class="text-xl font-bold tracking-tight">FinTrack</h1>
       </div>
 
       <nav class="px-4 space-y-1">
@@ -42,11 +40,6 @@ const menuItems = [
     </div>
 
     <div class="p-4">
-      <div class="bg-blue-600 rounded-xl p-4 text-white text-center mb-4">
-          <h3 class="font-bold mb-1">Upgrade Plan</h3>
-          <p class="text-xs text-blue-100 mb-3">Get unlimited access</p>
-          <button class="w-full py-2 bg-white text-blue-600 text-xs font-bold rounded-lg hover:bg-gray-100">Upgrade</button>
-      </div>
       <button @click="onLogout" class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-red-500 hover:bg-red-50 rounded-lg w-full transition">
         <span class="material-symbols-outlined">logout</span>
         Sign Out

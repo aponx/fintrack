@@ -26,15 +26,10 @@ const { user, handleLogout } = await useHomeLogic();
             </div>
 
             <div class="flex items-center gap-4 md:gap-6">
-              <button class="relative w-10 h-10 md:w-auto md:h-auto rounded-full bg-gray-100 md:bg-transparent flex items-center justify-center text-gray-500 hover:text-blue-600">
-                <span class="material-symbols-outlined">notifications</span>
-                <span class="absolute top-2 right-2 md:top-0 md:right-0 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
-              </button>
-              
               <div v-if="user" class="hidden md:flex items-center gap-3 pl-6 border-l border-gray-200 dark:border-gray-700">
                 <div class="text-right">
                   <p class="text-sm font-bold leading-tight">{{ user.name }}</p>
-                  <p class="text-xs text-gray-500">Pro Member</p>
+                  <p class="text-xs text-gray-500">Member</p>
                 </div>
                 <img :src="user.avatarUrl || ''" class="w-10 h-10 rounded-full border border-gray-200" alt="Avatar">
               </div>
