@@ -1,0 +1,35 @@
+/* FONT SETUP */
+.font-manrope {
+  font-family: 'Manrope', sans-serif;
+}
+
+/* CUSTOM COMPONENTS */
+.glass-card {
+  @apply bg-white/90 backdrop-blur-xl rounded-2xl border border-white/50 dark:bg-[#151f2e]/90 dark:border-gray-800;
+}
+
+.btn-outline {
+  @apply flex items-center justify-center h-12 px-6 rounded-lg border border-gray-200 bg-white text-gray-700 font-bold text-[15px] hover:bg-gray-50 transition-all shadow-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700;
+}
+
+.btn-primary {
+  @apply flex items-center justify-center h-12 px-6 rounded-lg bg-[#137fec] text-white font-bold text-[15px] hover:bg-[#106dd0] transition-all shadow-lg shadow-blue-500/20 active:scale-[0.98];
+}
+
+/* BACKGROUND PATTERN */
+.bg-pattern {
+  background-image: linear-gradient(rgba(19, 127, 236, 0.05) 1px, transparent 1px),
+    linear-gradient(to right, rgba(19, 127, 236, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+}
+
+/* ANIMATION */
+.animate-fade-in {
+  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
