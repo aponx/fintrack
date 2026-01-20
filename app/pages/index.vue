@@ -1,14 +1,20 @@
 <script setup lang="ts">
-// Import Style CSS (Langkah 1)
+// Import Style CSS
 import '~/assets/css/home.css';
 
-// Import Logic Composable (Langkah 2)
-// Nuxt otomatis mengimport composables, jadi 'useHomeLogic' langsung tersedia
+// Import Logic Composable
 const { user, handleLogout, handleEmailLogin } = await useHomeLogic();
 </script>
 
 <template>
-  <div class="min-h-screen relative flex flex-col items-center justify-center p-4 overflow-hidden">
+  <div v-if="user" class="w-full min-h-screen">
+    <HomeUserDashboard 
+      :user="user" 
+      :on-logout="handleLogout" 
+    />
+  </div>
+
+  <div v-else class="min-h-screen relative flex flex-col items-center justify-center p-4 overflow-hidden bg-[#f0f4f8] dark:bg-[#101922]">
     
     <div class="fixed inset-0 z-0 pointer-events-none">
       <div class="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-blue-200/40 rounded-full blur-[100px] dark:bg-blue-900/20"></div>
@@ -17,18 +23,10 @@ const { user, handleLogout, handleEmailLogin } = await useHomeLogic();
     </div>
 
     <div class="relative z-10 w-full max-w-[480px]">
-      
-      <HomeUserDashboard 
-        v-if="user" 
-        :user="user" 
-        :on-logout="handleLogout" 
-      />
-
       <HomeLoginCard 
-        v-else 
         :on-email-login="handleEmailLogin" 
       />
-
     </div>
+
   </div>
 </template>

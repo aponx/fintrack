@@ -1,4 +1,4 @@
-export const useHomeLogic = () => {
+export const useHomeLogic = async () => {
   // 1. Setup Head (Meta tags & Fonts)
   useHead({
     title: 'Welcome to FinTrack',
@@ -12,7 +12,11 @@ export const useHomeLogic = () => {
   });
 
   // 2. Ambil data user
-  const { data: user, refresh } = useFetch('/api/user', {
+  const { data: user, refresh } = await useFetch('/api/user', {
+    // 1. Kirim Cookie browser ke server saat SSR (PENTING UNTUK AUTH)
+    headers: useRequestHeaders(['cookie']), 
+    
+    // 2. Jika server return null, anggap itu nilai valid
     default: () => null 
   });
 
