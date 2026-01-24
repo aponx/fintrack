@@ -13,11 +13,13 @@
     "@lucia-auth/adapter-prisma": "^4.0.1",
     "@prisma/client": "6",
     "arctic": "^3.7.0",
+    "h3-zod": "^0.5.3",
     "lucia": "^3.2.2",
     "nuxt": "^4.2.2",
     "oslo": "^1.2.1",
     "vue": "^3.5.26",
-    "vue-router": "^4.6.4"
+    "vue-router": "^4.6.4",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.14.0",
