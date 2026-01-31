@@ -12,13 +12,15 @@ export const useHomeLogic = async () => {
   });
 
   // 2. Ambil data user
-  const { data, refresh } = await useFetch<{ user: any }>('/api/user', {
-    headers: useRequestHeaders(['cookie']),
-    // Kita set default berupa object dengan user null
-    default: () => ({ user: null })
+  const { data: user, refresh } = await useFetch('/api/user', {
+    // 1. Kirim Cookie browser ke server saat SSR (PENTING UNTUK AUTH)
+    headers: useRequestHeaders(['cookie']), 
+    
+    // 2. Jika server return null, anggap itu nilai valid
+    default: () => null 
   });
 
-  const user = computed(() => data.value?.user ?? null);
+  // const user = computed(() => data.value?.user ?? null);
 
   // 3. Handle Logout
   const handleLogout = async () => {
