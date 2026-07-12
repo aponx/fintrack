@@ -5,11 +5,11 @@ definePageMeta({
 });
 
 const router = useRouter();
-const { createWallet } = await useWalletLogic();
+const { createWallet } = useWalletLogic();
 
-// Fetch master wallets untuk dropdown
-const { data: masterWallets, status: masterWalletsStatus } = await useFetch<any[]>('/api/wallets', {
-  key: 'master-wallets',
+// Fetch master wallet types untuk dropdown
+const { data: masterWallets, status: masterWalletsStatus, refresh } = await useFetch<any[]>('/api/wallet-types', {
+  key: 'master-wallet-types',
   headers: useRequestHeaders(['cookie']),
   default: () => []
 });
