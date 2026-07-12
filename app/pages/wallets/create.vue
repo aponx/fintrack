@@ -7,12 +7,11 @@ definePageMeta({
 const router = useRouter();
 const { createWallet } = useWalletLogic();
 
-// Fetch master wallet types untuk dropdown
-const { data: masterWallets, status: masterWalletsStatus, refresh } = await useFetch<any[]>('/api/wallet-types', {
-  key: 'master-wallet-types',
-  headers: useRequestHeaders(['cookie']),
-  default: () => []
-});
+// Hardcoded wallet types
+const walletTypes = [
+  { id: 'PRETTY_CASH', name: 'Pretty Cash', type: 'PRETTY_CASH' },
+  { id: 'LARGE_CASH', name: 'Large Cash', type: 'LARGE_CASH' }
+];
 
 const form = reactive({
   walletId: '',
@@ -69,14 +68,13 @@ const handleSave = async () => {
           >
             <option value="" disabled>Select wallet type</option>
             <option 
-              v-for="wallet in masterWallets" 
+              v-for="wallet in walletTypes" 
               :key="wallet.id" 
               :value="wallet.id"
             >
               {{ wallet.name }} ({{ wallet.type }})
             </option>
           </select>
-          <p v-if="masterWalletsStatus === 'pending'" class="text-sm text-gray-500 mt-1">Loading wallet types...</p>
         </div>
         
         <div>
@@ -113,7 +111,7 @@ const handleSave = async () => {
         
         <button 
           type="submit" 
-          :disabled="isLoading || masterWalletsStatus === 'pending'"
+          :disabled="isLoading"
           class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {{ isLoading ? 'Saving...' : 'Save Wallet' }}
