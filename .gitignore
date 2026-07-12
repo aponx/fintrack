@@ -118,3 +118,5 @@ zig-out/
 
 # Julia
 julia-*/
+
+.nuxt/
