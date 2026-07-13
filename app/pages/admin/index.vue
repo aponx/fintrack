@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-  layout: 'dashboard'
+  layout: 'admin'
 });
 
 // Mock data untuk demo - nanti bisa diganti dengan API call
