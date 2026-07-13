@@ -1,6 +1,7 @@
 <script setup>
 definePageMeta({
-  layout: 'dashboard' // Otomatis pakai Sidebar & Bottom Nav
+  layout: 'dashboard', // Otomatis pakai Sidebar & Bottom Nav
+  middleware: ['auth']
 })
 </script>
 
