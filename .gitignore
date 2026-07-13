@@ -1,1 +1,1 @@
-Nothing needs to be added to .gitignore since the changes only include Vue component files (.vue) and layout files, which are source code files that should be tracked in version control. No build artifacts, dependencies, or temporary files are present in the file changes.
+Nothing needs to be added to the .gitignore file based on the provided changes. The listed files are all source code files (.ts, .vue) which should not be ignored.

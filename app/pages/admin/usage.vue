@@ -1,7 +1,21 @@
 <script setup lang="ts">
 definePageMeta({
-  layout: 'admin'
+  layout: 'admin',
+  middleware: ['auth']
 });
+
+// Cek user dan role di client side juga untuk keamanan tambahan
+const { data: user } = await useFetch('/api/user', {
+  headers: useRequestHeaders(['cookie']),
+  lazy: false,
+  server: true,
+  immediate: true
+});
+
+// Redirect jika tidak login atau bukan admin
+if (!user.value || user.value.role !== 'ADMIN') {
+  await navigateTo('/');
+}
 
 // Mock data untuk usage statistics
 const usageStats = ref({

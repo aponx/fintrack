@@ -8,7 +8,8 @@ const { wallets, totalNetWorth, formatCurrency } = await useWalletLogic();
 
 // 2. Gunakan Layout Dashboard
 definePageMeta({
-  layout: 'dashboard'
+  layout: 'dashboard',
+  middleware: ['auth']
 });
 </script>
 
