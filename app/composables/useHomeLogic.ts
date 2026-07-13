@@ -20,7 +20,11 @@ export const useHomeLogic = async () => {
     default: () => null,
     
     // 3. Pastikan lazy: false agar fetch langsung dijalankan di setup
-    lazy: false
+    lazy: false,
+    
+    // 4. Mencegah duplikasi request di client side
+    immediate: true,
+    server: true
   });
 
   // const user = computed(() => data.value?.user ?? null);
