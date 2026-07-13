@@ -11,7 +11,8 @@ export default defineNuxtRouteMiddleware(async (to) => {
     headers: useRequestHeaders(['cookie']),
     lazy: false,
     server: true,
-    immediate: true
+    immediate: true,
+    default: () => null
   });
 
   // Cek apakah user sudah login

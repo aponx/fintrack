@@ -1,9 +1,15 @@
 <script setup lang="ts">
 // Admin layout - similar to dashboard but with admin-specific branding
-const { user, handleLogout } = await useHomeLogic();
+const { data: user, handleLogout } = await useFetch('/api/user', {
+  headers: useRequestHeaders(['cookie']),
+  lazy: false,
+  server: true,
+  immediate: true,
+  default: () => null
+});
 
 // Redirect jika user bukan ADMIN
-if (user && user.role !== 'ADMIN') {
+if (!user.value || user.value.role !== 'ADMIN') {
   await navigateTo('/');
 }
 </script>
