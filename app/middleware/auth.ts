@@ -36,6 +36,8 @@ export default defineNuxtRouteMiddleware(async (to) => {
       // Bukan admin, redirect ke home
       return navigateTo('/');
     }
+    // Jika admin, izinkan akses ke halaman admin
+    return;
   }
 
   // Jika user adalah admin tapi mencoba akses halaman customer (non-admin)
