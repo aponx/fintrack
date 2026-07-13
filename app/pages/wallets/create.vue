@@ -72,7 +72,7 @@ const handleSave = async () => {
               :key="wallet.id" 
               :value="wallet.id"
             >
-              {{ wallet.name }} ({{ wallet.type }})
+              {{ wallet.name }}
             </option>
           </select>
         </div>
