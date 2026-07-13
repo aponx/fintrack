@@ -24,6 +24,7 @@ async function main() {
     where: { username: 'admin' },
     update: {},
     create: {
+      id: crypto.randomUUID(),
       username: 'admin',
       email: 'admin@fintrack.com',
       name: 'Administrator',
@@ -40,27 +41,6 @@ async function main() {
     role: adminUser.role,
   });
 
-  // Buat user customer jika belum ada
-  const customerUser = await prisma.user.upsert({
-    where: { username: 'customer' },
-    update: {},
-    create: {
-      username: 'customer',
-      email: 'customer@fintrack.com',
-      name: 'Customer User',
-      password: userPassword,
-      role: 'USER',
-      isActive: true,
-    },
-  });
-
-  console.log('Customer user created/updated:', {
-    id: customerUser.id,
-    username: customerUser.username,
-    email: customerUser.email,
-    role: customerUser.role,
-  });
-
   console.log('\n===========================================');
   console.log('LOGIN CREDENTIALS:');
   console.log('===========================================');
@@ -69,12 +49,6 @@ async function main() {
   console.log('  Password: admin123');
   console.log('  Role: ADMIN');
   console.log('  Can access: /admin/* pages');
-  console.log('-------------------------------------------');
-  console.log('CUSTOMER:');
-  console.log('  Username: customer');
-  console.log('  Password: user123');
-  console.log('  Role: USER');
-  console.log('  Can access: /wallets, /budgets pages');
   console.log('===========================================\n');
 }
 
