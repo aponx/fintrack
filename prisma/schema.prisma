@@ -58,10 +58,13 @@ model Transaction {
 
 model User {
   id          String        @id
-  googleId    String        @unique
+  googleId    String?       @unique
   email       String        @unique
   name        String?
   avatarUrl   String?
+  username    String?       @unique
+  password    String?
+  role        Role          @default(USER)
   isActive    Boolean       @default(true)
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
@@ -112,4 +115,9 @@ enum TransactionType {
 enum WalletType {
   PRETTY_CASH
   LARGE_CASH
+}
+
+enum Role {
+  USER
+  ADMIN
 }
