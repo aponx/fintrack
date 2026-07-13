@@ -3,10 +3,6 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
-  alias: {
-    '~': '/workspace',
-    '@': '/workspace'
-  },
   modules: [
     ['@nuxtjs/tailwindcss', {
       cssPath: ['~/assets/css/main.css', { injectPosition: 'first' }],

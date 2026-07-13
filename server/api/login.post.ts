@@ -1,7 +1,7 @@
 import { z } from 'zod';
-import { prisma } from '~/server/utils/db';
-import { lucia } from '~/server/utils/auth';
-import { hash, verify } from '@node-rs/argon2';
+import { prisma } from '../utils/db';
+import { lucia } from '../utils/auth';
+import { verify } from '@node-rs/argon2';
 
 const loginSchema = z.object({
   username: z.string().min(1, 'Username wajib diisi'),
@@ -14,13 +14,13 @@ export default defineEventHandler(async (event) => {
   }
 
   const body = await readBody(event);
-  
+
   // Validasi input
   const validation = loginSchema.safeParse(body);
   if (!validation.success) {
-    return createError({ 
-      statusCode: 400, 
-      message: validation.error.errors.map(e => e.message).join(', ') 
+    return createError({
+      statusCode: 400,
+      message: validation.error.errors.map(e => e.message).join(', ')
     });
   }
 
@@ -44,7 +44,7 @@ export default defineEventHandler(async (event) => {
   // Buat session
   const session = await lucia.createSession(user.id, {});
   const sessionCookie = lucia.createSessionCookie(session.id);
-  
+
   appendHeader(event, 'Set-Cookie', sessionCookie.serialize());
 
   return {
