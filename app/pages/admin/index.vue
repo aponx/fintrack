@@ -4,15 +4,7 @@ definePageMeta({
   middleware: ['auth']
 });
 
-// Cek user dan role di client side juga untuk keamanan tambahan
-const { data: user } = await useFetch('/api/user', {
-  headers: useRequestHeaders(['cookie']),
-  lazy: false,
-  server: true,
-  immediate: true
-});
-
-// Redirect jika tidak login atau bukan admin - sudah dihandle oleh middleware dan layout
+// Cek user dan role di client side juga untuk keamanan tambahan - sudah dihandle oleh middleware dan layout
 // Halaman ini hanya akan dirender jika user adalah ADMIN
 
 // Mock data untuk demo - nanti bisa diganti dengan API call
