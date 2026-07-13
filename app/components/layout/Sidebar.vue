@@ -11,6 +11,13 @@ const menuItems = [
   { name: 'Budgets', icon: 'pie_chart', path: '/budgets' },
   { name: 'Transactions', icon: 'receipt_long', path: '/transactions' },
 ];
+
+const adminMenuItems = [
+  { name: 'Admin Dashboard', icon: 'admin_panel_settings', path: '/admin' },
+  { name: 'Master Wallet', icon: 'business_center', path: '/admin/wallets' },
+  { name: 'User Management', icon: 'manage_accounts', path: '/admin/users' },
+  { name: 'Usage Stats', icon: 'bar_chart', path: '/admin/usage' },
+];
 </script>
 
 <template>
@@ -24,6 +31,7 @@ const menuItems = [
       </div>
 
       <nav class="px-4 space-y-1">
+        <p class="px-4 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">Main Menu</p>
         <NuxtLink 
           v-for="item in menuItems" 
           :key="item.name" 
@@ -31,6 +39,20 @@ const menuItems = [
           :class="['flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition-colors', 
                    route.path === item.path 
                    ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' 
+                   : 'text-gray-500 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-800']"
+        >
+          <span class="material-symbols-outlined text-[20px]">{{ item.icon }}</span>
+          {{ item.name }}
+        </NuxtLink>
+
+        <p class="px-4 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider mt-6">Admin Panel</p>
+        <NuxtLink 
+          v-for="item in adminMenuItems" 
+          :key="item.name" 
+          :to="item.path"
+          :class="['flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition-colors', 
+                   route.path.startsWith('/admin') && route.path.includes(item.path.replace('/admin', ''))
+                   ? 'bg-purple-50 text-purple-600 dark:bg-purple-900/20 dark:text-purple-400' 
                    : 'text-gray-500 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-800']"
         >
           <span class="material-symbols-outlined text-[20px]">{{ item.icon }}</span>
