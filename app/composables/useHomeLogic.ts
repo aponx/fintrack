@@ -17,7 +17,10 @@ export const useHomeLogic = async () => {
     headers: useRequestHeaders(['cookie']), 
     
     // 2. Jika server return null, anggap itu nilai valid
-    default: () => null 
+    default: () => null,
+    
+    // 3. Pastikan lazy: false agar fetch langsung dijalankan di setup
+    lazy: false
   });
 
   // const user = computed(() => data.value?.user ?? null);
