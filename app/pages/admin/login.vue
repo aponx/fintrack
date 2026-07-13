@@ -22,7 +22,8 @@ const handleLogin = async () => {
     });
     
     if (response.success) {
-      navigateTo('/admin');
+      // Force refresh user data setelah login berhasil
+      await navigateTo('/admin', { replace: true });
     } else {
       error.value = response.message || 'Invalid credentials';
     }

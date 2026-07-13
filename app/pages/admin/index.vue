@@ -12,10 +12,8 @@ const { data: user } = await useFetch('/api/user', {
   immediate: true
 });
 
-// Redirect jika tidak login atau bukan admin
-if (!user.value || user.value.role !== 'ADMIN') {
-  await navigateTo('/');
-}
+// Redirect jika tidak login atau bukan admin - sudah dihandle oleh middleware dan layout
+// Halaman ini hanya akan dirender jika user adalah ADMIN
 
 // Mock data untuk demo - nanti bisa diganti dengan API call
 const stats = ref({

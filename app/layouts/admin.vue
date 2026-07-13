@@ -1,6 +1,11 @@
 <script setup lang="ts">
 // Admin layout - similar to dashboard but with admin-specific branding
 const { user, handleLogout } = await useHomeLogic();
+
+// Redirect jika user bukan ADMIN
+if (user && user.role !== 'ADMIN') {
+  await navigateTo('/');
+}
 </script>
 
 <template>
